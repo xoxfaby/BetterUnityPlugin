@@ -12,3 +12,5 @@ jobs:
   release:
     needs: build
     uses: xoxfaby/actions/.github/workflows/nuget.yml@main
+    secrets:
+      NUGET_TOKEN: ${{ secrets.NUGET_TOKEN }}
