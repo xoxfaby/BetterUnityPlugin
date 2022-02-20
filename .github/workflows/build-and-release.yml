@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    uses: xoxfaby/actions/.github/workflows/dotnet.yml
+    uses: xoxfaby/actions/.github/workflows/dotnet.yml@main
 
   release:
-    uses: xoxfaby/actions/.github/workflows/nuget.yml
+    uses: xoxfaby/actions/.github/workflows/nuget.yml@main
