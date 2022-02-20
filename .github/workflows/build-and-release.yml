@@ -10,4 +10,5 @@ jobs:
     uses: xoxfaby/actions/.github/workflows/dotnet.yml@main
 
   release:
+    needs: build
     uses: xoxfaby/actions/.github/workflows/nuget.yml@main
