@@ -1,0 +1,8 @@
+name: Build
+
+on:
+  push:
+
+jobs:
+  build:
+    uses: xoxfaby/actions/.github/workflows/dotnet.yml@main

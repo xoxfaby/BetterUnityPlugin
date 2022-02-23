@@ -1,13 +1,14 @@
 name: Build and Release
 
 on:
+  workflow_dispatch:
   push:
     tags:        
       - 'v*' 
 
 jobs:
   build:
-    uses: xoxfaby/actions/.github/workflows/dotnet.yml@main
+    uses: xoxfaby/actions/.github/workflows/dotnet-publish.yml@main
 
   release:
     needs: build
