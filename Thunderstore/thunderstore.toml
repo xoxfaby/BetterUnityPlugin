@@ -1,0 +1,28 @@
+[config]
+schemaVersion = "0.0.1"
+
+[package]
+namespace = "XoXFaby"
+name = "BetterUnityPlugin"
+versionNumber = "0.0.0"
+description = "BaseUnityPlugin with MonoBehaviour message events and a Hook Manager"
+websiteUrl = "https://github.com/xoxfaby/BetterUnityPlugin"
+containsNsfwContent = false
+
+[package.dependencies]
+bbepis-BepInExPack = "5.4.9"
+
+[build]
+icon = "./icon.png"
+readme = "../README.md"
+outdir = "../zip"
+
+
+[[build.copy]]
+source = "../bin/Release/netstandard2.0/BetterUnityPlugin.dll"
+target = "BetterUnityPlugin.dll"
+
+[publish]
+repository = "https://thunderstore.io"
+communities = ["riskofrain2"]
+categories = ["libraries"]
