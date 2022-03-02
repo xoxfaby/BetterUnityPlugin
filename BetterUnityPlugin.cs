@@ -17,8 +17,10 @@ namespace BetterUnityPlugin
         public static event Action onEnable;
         public static event Action onDisable;
         public static event Action onUpdate;
+        public static event Action onReset;
         public static event Action onFixedUpdate;
         public static event Action onLateUpdate;
+        public static event Action onDestroy;
 
         virtual protected void Awake()
         {
@@ -48,6 +50,14 @@ namespace BetterUnityPlugin
         virtual protected void LateUpdate()
         {
             if (onLateUpdate != null) onLateUpdate();
+        }
+        virtual protected void OnDestroy()
+        {
+            if (onDestroy != null) onDestroy();
+        }
+        virtual protected void Reset()
+        {
+            if (onReset != null) onReset();
         }
 
         public class HookManager
