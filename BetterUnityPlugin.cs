@@ -24,6 +24,7 @@ namespace BetterUnityPlugin
 
         virtual protected void Awake()
         {
+            this.gameObject.hideFlags |= UnityEngine.HideFlags.HideAndDontSave;
             if (onAwake != null) onAwake();
         }
 
