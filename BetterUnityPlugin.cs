@@ -7,6 +7,9 @@ using System.Text;
 
 namespace BetterUnityPlugin
 {
+    [BepInPlugin("----.xoxfaby.BetterUnityPluginDummyMod", "BetterUnityPluginDummyMod", "1.0.0")]
+    public class DummyModPlugin : BaseUnityPlugin
+    { }
     public abstract class BetterUnityPlugin<T> : BaseUnityPlugin
     {
         public abstract BaseUnityPlugin typeReference { get; }
