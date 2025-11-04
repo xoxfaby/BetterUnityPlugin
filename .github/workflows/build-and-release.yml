@@ -23,5 +23,5 @@ jobs:
       version: ${{ needs.build.outputs.version }}
 
   release-github:
-    needs: release-thunderstore
+    needs: build-thunderstore
     uses: xoxfaby/actions/.github/workflows/release.yml@main
