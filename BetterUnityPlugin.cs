@@ -10,6 +10,7 @@ namespace BetterUnityPlugin
     [BepInPlugin("----.xoxfaby.BetterUnityPluginDummyMod", "BetterUnityPluginDummyMod", "1.0.0")]
     public class DummyModPlugin : BaseUnityPlugin
     { }
+
     public abstract class BetterUnityPlugin<T> : BaseUnityPlugin
     {
         public abstract BaseUnityPlugin typeReference { get; }
@@ -71,11 +72,16 @@ namespace BetterUnityPlugin
             private List<Hook> hooks = new List<Hook>();
             private List<ILHook> ILHooks = new List<ILHook>();
             private bool enabled = false;
+            private HookAttributeManager<T> hookAttributeManager = new HookAttributeManager<T>();
 
             public HookManager()
             {
                 onEnable += BetterUnityPlugin_onEnable;
                 onDisable += BetterUnityPlugin_onDisable;
+
+                onEnable += hookAttributeManager.Enable;
+                onDisable += hookAttributeManager.Disable;
+
             }
 
             private void BetterUnityPlugin_onEnable()

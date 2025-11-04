@@ -27,6 +27,10 @@ https://github.com/xoxfaby/BetterUnityPlugin
 
 ## Changelog
 
+### v1.2.0
+
+ - Addition: Addded Hook Attributes
+
 ### v1.1.0
  - Addition: Added fix that stops BepinexManager GameObject from being Destroyed
  - Addition: Added onDestroy and onReset events
