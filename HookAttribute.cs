@@ -13,7 +13,7 @@ namespace BetterUnityPlugin
         public BindingFlags MethodFlags;
         public Type MethodClass;
 
-        public HookAttribute(string methodName, Type methodClass = null, BindingFlags methodFlags = BindingFlags.Default)
+        public HookAttribute(string methodName = null, Type methodClass = null, BindingFlags methodFlags = BindingFlags.Default)
         {
             MethodName = methodName;
             MethodFlags = methodFlags;

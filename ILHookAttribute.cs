@@ -14,7 +14,7 @@ namespace BetterUnityPlugin
         public Type[] MethodParams;
         public BindingFlags MethodFlags;
 
-        public ILHookAttribute(Type methodClass, string methodName, Type[] methodParams = null, BindingFlags methodFlags = BindingFlags.Default)
+        public ILHookAttribute(Type methodClass = null, string methodName, Type[] methodParams = null, BindingFlags methodFlags = BindingFlags.Default)
         {
             MethodClass = methodClass;
             MethodName = methodName;

@@ -13,7 +13,7 @@ namespace BetterUnityPlugin
         public string EventName;
         public BindingFlags EventFlags;
 
-        public EventAttribute(Type eventClass, string eventName, BindingFlags eventFlags = BindingFlags.Default)
+        public EventAttribute(Type eventClass = null, string eventName, BindingFlags eventFlags = BindingFlags.Default)
         {
             EventClass = eventClass;
             EventName = eventName;
