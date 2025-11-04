@@ -29,7 +29,7 @@ https://github.com/xoxfaby/BetterUnityPlugin
 
 ### v1.2.0
 
- - Addition: Addded Hook Attributes
+ - Addition: Added Hook Attributes
 
 ### v1.1.0
  - Addition: Added fix that stops BepinexManager GameObject from being Destroyed
