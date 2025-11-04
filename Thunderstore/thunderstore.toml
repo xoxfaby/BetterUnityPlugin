@@ -21,8 +21,3 @@ outdir = "../zip"
 [[build.copy]]
 source = "../bin/Release/netstandard2.0/BetterUnityPlugin.dll"
 target = "BetterUnityPlugin.dll"
-
-[publish]
-repository = "https://thunderstore.io"
-communities = ["riskofrain2"]
-categories = ["libraries"]
