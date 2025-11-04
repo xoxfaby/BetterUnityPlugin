@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using MonoMod.RuntimeDetour;
-using System.Reflection;
-using System.Linq;
+﻿using BetterUnityPlugin;
 using MonoMod.Cil;
+using MonoMod.RuntimeDetour;
 using MonoMod.Utils;
-using BetterUnityPlugin;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using System.Text;
+using System.Xml.Linq;
 
 namespace BetterUnityPlugin
 {
@@ -35,6 +36,12 @@ namespace BetterUnityPlugin
                     Type type = hookAttribute.MethodClass;
                     Type[] types = null;
 
+                    string name = hookAttribute.MethodName ?? method.Name;
+                    if (hookAttribute.MethodName == null && name.EndsWith("Hook"))
+                    {
+                        name = name.Substring(0, name.Length - 4);
+                    }
+
                     try
                     {
                         if (type == null)
@@ -45,14 +52,14 @@ namespace BetterUnityPlugin
                     }
                     catch
                     {
-                        UnityEngine.Debug.LogError($"Could not hook method {hookAttribute.MethodName}, type not found.");
+                        UnityEngine.Debug.LogError($"Could not hook method {name}, type not found.");
 
                         continue;
                     }
-                    MethodInfo methodFrom = FindMethod(type, hookAttribute.MethodName, types, hookAttribute.MethodFlags);
+                    MethodInfo methodFrom = FindMethod(type, name, types, hookAttribute.MethodFlags);
                     if (methodFrom == null)
                     {
-                        UnityEngine.Debug.LogError($"Could not hook method {hookAttribute.MethodName} of {type}, method not found.");
+                        UnityEngine.Debug.LogError($"Could not hook method {name} of {type}, method not found.");
                         continue;
                     }
                     hookSignatures.Add((methodFrom, method));
@@ -62,7 +69,14 @@ namespace BetterUnityPlugin
                 {
                     Type type = iLHookAttribute.MethodClass;
                     Type[] types = iLHookAttribute.MethodParams;
-                    MethodInfo methodFrom = FindMethod(type, iLHookAttribute.MethodName, types, iLHookAttribute.MethodFlags);
+
+                    string name = iLHookAttribute.MethodName ?? method.Name;
+                    if (iLHookAttribute.MethodName == null && name.EndsWith("Hook"))
+                    {
+                        name = name.Substring(0, name.Length - 4);
+                    }
+
+                    MethodInfo methodFrom = FindMethod(type, name, types, iLHookAttribute.MethodFlags);
                     if (methodFrom == null)
                     {
                         UnityEngine.Debug.LogError($"Could not hook method {iLHookAttribute.MethodName} of {type}, method not found.");
@@ -74,18 +88,24 @@ namespace BetterUnityPlugin
                 }
                 foreach (var eventAttribute in method.GetCustomAttributes<EventAttribute>())
                 {
+                    string name = eventAttribute.EventName ?? method.Name;
+                    if (eventAttribute.EventName == null && name.EndsWith("Hook"))
+                    {
+                        name = name.Substring(0, name.Length - 4);
+                    }
+
                     EventInfo eventInfo;
                     if(eventAttribute.EventFlags == BindingFlags.Default)
                     {
-                        eventInfo = eventAttribute.EventClass.GetEvent(eventAttribute.EventName, anyFlags);
+                        eventInfo = eventAttribute.EventClass.GetEvent(name, anyFlags);
                     }
                     else
                     {
-                        eventInfo = eventAttribute.EventClass.GetEvent(eventAttribute.EventName, eventAttribute.EventFlags);
+                        eventInfo = eventAttribute.EventClass.GetEvent(name, eventAttribute.EventFlags);
                     }
                     if (eventInfo == null)
                     {
-                        UnityEngine.Debug.LogError($"Could not subscribe to event {eventAttribute.EventName} of {eventAttribute.EventClass}, event not found.");
+                        UnityEngine.Debug.LogError($"Could not subscribe to event {name} of {eventAttribute.EventClass}, event not found.");
                         continue;
                     }
                     Delegate eventHandler;
@@ -95,7 +115,7 @@ namespace BetterUnityPlugin
                     }
                     catch (Exception ex)
                     {
-                        UnityEngine.Debug.LogError($"Could not subscribe to event {eventAttribute.EventName} of {eventAttribute.EventClass}, failed to create eventhandler delegate:\n {ex}");
+                        UnityEngine.Debug.LogError($"Could not subscribe to event {name} of {eventAttribute.EventClass}, failed to create eventhandler delegate:\n {ex}");
                         continue;
                     }
                     Events.Add((eventInfo, eventHandler));

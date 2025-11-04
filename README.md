@@ -27,7 +27,12 @@ https://github.com/xoxfaby/BetterUnityPlugin
 
 ## Changelog
 
-### v1.2.3
+
+#### v1.2.4
+
+ - Addition: Added logic to detect name of method to hook
+
+#### v1.2.3
 
  - Bugfix: Fixed attribute accessibility
 
