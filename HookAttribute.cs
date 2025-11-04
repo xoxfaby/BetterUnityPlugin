@@ -7,7 +7,7 @@ using MonoMod.RuntimeDetour;
 namespace BetterUnityPlugin
 {
     [System.AttributeUsage(System.AttributeTargets.Method, AllowMultiple = true)]
-    internal class HookAttribute : System.Attribute
+    public class HookAttribute : System.Attribute
     {
         public string MethodName;
         public BindingFlags MethodFlags;

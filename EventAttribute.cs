@@ -7,7 +7,7 @@ using MonoMod.RuntimeDetour;
 namespace BetterUnityPlugin
 {
     [System.AttributeUsage(System.AttributeTargets.Method, AllowMultiple = true)]
-    internal class EventAttribute : System.Attribute
+    public class EventAttribute : System.Attribute
     {
         public Type EventClass;
         public string EventName;

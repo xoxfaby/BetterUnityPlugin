@@ -27,6 +27,10 @@ https://github.com/xoxfaby/BetterUnityPlugin
 
 ## Changelog
 
+### v1.2.3
+
+ - Bugfix: Fixed attribute accessibility
+
 ### v1.2.0
 
  - Addition: Added Hook Attributes
